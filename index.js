@@ -3,7 +3,14 @@ var Joi = require('joi');
 
 var database = require('./db/database.json');
 
-var server = new Hapi.Server(3000, 'localhost');
+var server = new Hapi.Server(3000, 'localhost', {
+    views: {
+        engines: {
+            jade: 'jade'
+        },
+        path: './views'
+    }
+});
 
 // NOTE server methods for general purpose
 server.method('getColor', function (next) {
@@ -19,7 +26,7 @@ var helloConfig = {
         var names = request.params.name.split('/');
 
         server.methods.getColor(function (err, color) {
-            reply({
+            reply.view('hello', {
                 first: names[0],
                 last: names[1],
                 mood: request.query.mood,
