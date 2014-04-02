@@ -5,16 +5,27 @@ var database = require('./db/database.json');
 
 var server = new Hapi.Server(3000, 'localhost');
 
+// NOTE server methods for general purpose
+server.method('getColor', function (next) {
+    var colors = ['red', 'green', 'indigo', 'violet', 'orange', 'teal'];
+    var rand = Math.floor(Math.random() * colors.length);
+
+    next(null, colors[rand]);
+})
+
 // TODO refactor this config into separate modules
 var helloConfig = {
     handler: function (request, reply) {
         var names = request.params.name.split('/');
 
-        reply({
-            first: names[0],
-            last: names[1],
-            mood: request.query.mood,
-            age: request.query.age
+        server.methods.getColor(function (err, color) {
+            reply({
+                first: names[0],
+                last: names[1],
+                mood: request.query.mood,
+                age: request.query.age,
+                color: color
+            });
         });
     },
     validate: {
