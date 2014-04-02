@@ -1,0 +1,11 @@
+{
+  "name": "hapi-getting-started",
+  "version": "0.0.0",
+  "description": "Example Hapi 2.0 application",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Michael Allan <michaelallan@optushome.com.au>",
+  "private": true
+}
