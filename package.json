@@ -7,5 +7,8 @@
     "test": "mocha"
   },
   "author": "Michael Allan <michaelallan@optushome.com.au>",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "hapi": "^3.1.0"
+  }
 }
