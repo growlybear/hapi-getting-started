@@ -40,7 +40,7 @@ var helloConfig = {
             name: Joi.string().min(8).max(100)
         },
         query: {
-            mood: Joi.string().valid(['neutral', 'happy', 'sad']).default('neutral'),
+            mood: Joi.string().valid(['boring', 'grumpy', 'happy']).default('boring'),
             age: Joi.number().integer().min(13).max(100)
         }
     }
@@ -66,6 +66,19 @@ server.route({
     method: 'GET',
     handler: function (request, reply) {
         reply(Object.keys(database));
+    }
+});
+
+// Serve static assets
+server.route({
+    path: '/static/{path*}',
+    method: 'GET',
+    handler: {
+        directory: {
+            path: './public',
+            listing: false,
+            index: false
+        }
     }
 });
 
