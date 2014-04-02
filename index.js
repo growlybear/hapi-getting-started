@@ -1,6 +1,8 @@
 var Hapi = require('hapi');
 var Joi = require('joi');
 
+var database = require('./db/database.json');
+
 var server = new Hapi.Server(3000, 'localhost');
 
 // TODO refactor this config into separate modules
@@ -39,7 +41,15 @@ server.route({
     path: '/hello/{name*2}',
     method: 'GET',
     config: helloConfig
-})
+});
+
+server.route({
+    path: '/users',
+    method: 'GET',
+    handler: function (request, reply) {
+        reply(Object.keys(database));
+    }
+});
 
 // NOTE Prevents the server from starting during testing
 if (!module.parent) {
