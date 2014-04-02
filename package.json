@@ -4,13 +4,14 @@
   "description": "Example Hapi 2.0 application",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "./node_modules/lab/bin/lab -c"
   },
   "author": "Michael Allan <michaelallan@optushome.com.au>",
   "private": true,
   "dependencies": {
     "hapi": "^3.1.0",
-    "joi": "^2.9.0"
+    "joi": "^2.9.0",
+    "lab": "^3.0.0"
   },
   "devDependencies": {
     "grunt": "^0.4.4",

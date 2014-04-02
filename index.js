@@ -41,6 +41,11 @@ server.route({
     config: helloConfig
 })
 
-server.start(function () {
-    console.log('Hapi server started @ ' + server.info.uri);
-});
+// NOTE Prevents the server from starting during testing
+if (!module.parent) {
+    server.start(function () {
+        console.log('Hapi server started @ ' + server.info.uri);
+    });
+}
+
+module.exports = server;
