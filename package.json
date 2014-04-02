@@ -10,5 +10,9 @@
   "private": true,
   "dependencies": {
     "hapi": "^3.1.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-contrib-jshint": "^0.9.2"
   }
 }
