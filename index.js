@@ -84,7 +84,7 @@ server.route({
 
 // NOTE Prevents the server from starting during testing
 if (!module.parent) {
-    server.pack.require('lout', function (err) {
+    server.pack.require(['lout', './plugins/example'], function (err) {
         if (err) throw err;
         server.start(function () {
             console.log('Hapi server started @ ' + server.info.uri);
