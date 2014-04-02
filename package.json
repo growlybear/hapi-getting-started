@@ -9,7 +9,8 @@
   "author": "Michael Allan <michaelallan@optushome.com.au>",
   "private": true,
   "dependencies": {
-    "hapi": "^3.1.0"
+    "hapi": "^3.1.0",
+    "joi": "^2.9.0"
   },
   "devDependencies": {
     "grunt": "^0.4.4",
