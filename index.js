@@ -8,14 +8,13 @@ var server = new Hapi.Server(3000, 'localhost');
 // TODO refactor this config into separate modules
 var helloConfig = {
     handler: function (request, reply) {
-        console.log(request);
-
         var names = request.params.name.split('/');
 
         reply({
             first: names[0],
             last: names[1],
-            mood: request.query.mood
+            mood: request.query.mood,
+            age: request.query.age
         });
     },
     validate: {
@@ -23,7 +22,8 @@ var helloConfig = {
             name: Joi.string().min(8).max(100)
         },
         query: {
-            mood: Joi.string().valid(['neutral', 'happy', 'sad']).default('neutral')
+            mood: Joi.string().valid(['neutral', 'happy', 'sad']).default('neutral'),
+            age: Joi.number().integer().min(13).max(100)
         }
     }
 };
