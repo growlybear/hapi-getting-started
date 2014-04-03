@@ -4,6 +4,14 @@ var Joi = require('joi');
 var database = require('./db/database.json');
 
 var server = new Hapi.Server(3000, 'localhost', {
+    cache: {
+        engine: 'catbox-memory',
+        options: {
+            host: 'localhost',
+            partition: 'HapiGettingStarted',
+            password: 'mypassword'
+        }
+    },
     views: {
         engines: {
             jade: 'jade'
@@ -13,19 +21,23 @@ var server = new Hapi.Server(3000, 'localhost', {
 });
 
 // NOTE server methods for general purpose
-server.method('getColor', function (next) {
+server.method('getColor', function (name, next) {
     var colors = ['red', 'green', 'indigo', 'violet', 'orange', 'teal'];
-    var rand = Math.floor(Math.random() * colors.length);
+    var color = colors[Math.floor(Math.random() * colors.length)];
 
-    next(null, colors[rand]);
-})
+    next(null, color);
+}, {
+    cache: {
+        expiresIn: 30000
+    }
+});
 
 // TODO refactor this config into separate modules
 var helloConfig = {
     handler: function (request, reply) {
         var names = request.params.name.split('/');
 
-        server.methods.getColor(function (err, color) {
+        server.methods.getColor(request.params.name, function (err, color) {
             reply.view('hello', {
                 first: names[0],
                 last: names[1],
