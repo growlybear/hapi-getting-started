@@ -6,7 +6,11 @@ module.exports = function (grunt) {
 
         jshint: {
             client: [
-                'Gruntfile.js'
+                'Gruntfile.js',
+                'package.json',
+                'index.js',
+                '{db,plugins,test}/**/*.{js,json}',
+                '/public/js/**/*.js'
             ],
         }
 

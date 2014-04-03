@@ -22,6 +22,6 @@ Lab.experiment('Users', function () {
             Lab.expect(result).to.have.length(5);
 
             done();
-        })
+        });
     });
 });
