@@ -5,7 +5,9 @@ var database = require('./db/database.json');
 
 var server = new Hapi.Server(3000, 'localhost', {
     cache: {
-        engine: 'catbox-memory',
+        // IMPORTANT ensure redis is running to cache server data
+        // use catbox-memory to develop locally with caching turned on
+        engine: 'catbox-redis',
         options: {
             host: 'localhost',
             partition: 'HapiGettingStarted',
